@@ -39,7 +39,26 @@ function runGame(gameType) {
     }
 
 }
+/**
+ * Gets the operands (the numbers) and the operator (plus, minus etc)
+ * directly from the dom, and returns the correct answer.
+ */
 
+function calculateCorrectAnswer(){
+
+    let operand1 = parseInt(document.getDocumentById('operand1').innerText); // When javascript gets data from the dom it is returned
+    // as a string and you cannot do mathematical operations on a string so that is why you use parseInt
+    let operand2 = parseInt(document.getDocumentById('operand2').innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    if (operator === "+"){
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented operator ${operator} `);
+        throw `Unimplimented operator ${operator}. Aborting!`;
+    }
+
+}
 
 
 function checkAnswer() {
