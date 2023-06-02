@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter"){
+            checkAnswer(); // Listening for keydown event , if the key that was pressed was enter --> check the answeer in the answer box
+        }
+    })
+
 
     runGame("addition");
 
@@ -27,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processed 
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = ""; // clears previous answer ready for next question
+    document.getElementById("answer-box").focus(); // makes cursor automatically focus on the answer box
+
     // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
@@ -93,6 +103,9 @@ function calculateCorrectAnswer() {
 
     } else if (operator === "-"){
         return [operand1 - operand2, "subtract"];
+
+    } else if (operator === "/"){
+        return [operand1 / operand2, "division"];
     }
     
     else {
@@ -151,8 +164,8 @@ function displayMultiplyQuestion(operand1, operand2) {
 
 function displayDivisionQuestion(operand1, operand2){
 
-    document.getElementById("operand1").textContent = operand1;
-    document.getElementById("operand2").textContent = operand2;
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1: operand2 ; 
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2: operand1 ; 
     document.getElementById("operator").textContent = "/";
 
 }
